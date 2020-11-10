@@ -1,0 +1,20 @@
+.zippy{
+    border: 1px solid #ccc;
+    border-radius: 2px;
+}
+
+.glyphicon{
+   float: right; 
+}
+.zippy-heading{
+    cursor: pointer;
+    font-weight: bold;
+    padding: 5px;
+}
+.zippy-body{
+    padding: 10px;
+}
+
+.expanded {
+    background: #f0f0f0;
+}
