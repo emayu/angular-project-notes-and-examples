@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +16,7 @@ import { SignupFormComponent } from './signup-form/signup-form.component';
 import { TopicListFormComponent } from './topic-list-form/topic-list-form.component';
 import { PasswordChangeFormComponent } from './password-change-form/password-change-form.component';
 import { PostsComponent } from './posts/posts.component';
+
 
 @NgModule({
   declarations: [
@@ -33,9 +35,9 @@ import { PostsComponent } from './posts/posts.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpModule
   ],
   providers: [],
   bootstrap: [AppComponent]
