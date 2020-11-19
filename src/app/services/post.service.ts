@@ -34,7 +34,7 @@ export class PostService {
   }
 
   deletePost(id) {
-    let url =  this.url + '/' + id;
+    let url =  this.url + 'sss/' + id;
     return this.http.delete(url).pipe(
       catchError((error:Response) => {
         if (error.status === 404) {
