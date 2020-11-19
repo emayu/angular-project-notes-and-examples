@@ -14,33 +14,44 @@ export class PostService {
   constructor(private http: Http) { }
 
   getPosts(){
-    return this.http.get(this.url);
-  }
+    return this.http.get(this.url)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }d
 
   createPost(post){
     return this.http.post(this.url, JSON.stringify(post))
       .pipe(
-        catchError((error:Response) => {
-          if(error.status == 400){
-            return throwError(new BadInput(error.json()))
-          }
-          return throwError(new AppError(error));
-      }));
+        catchError(this.handleError)
+      );
   }
 
   updatePost(post){
     let url = this.url + '/' + post.id ;
-    return this.http.patch(url, JSON.stringify({ isRead : true }));
+    return this.http.patch(url, JSON.stringify({ isRead : true }))
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
   deletePost(id) {
-    let url =  this.url + 'sss/' + id;
-    return this.http.delete(url).pipe(
-      catchError((error:Response) => {
-        if (error.status === 404) {
-          return throwError(new NotFoundError());
-        }
-        return throwError(new AppError(error));
-      }));
+    let url =  this.url + '/' + id;
+    return this.http.delete(url)
+    .pipe(
+      catchError(this.handleError)
+    );
   }
+
+  private handleError(error:Response){
+    if(error.status == 400){
+      return throwError(new BadInput(error.json()))
+    }
+    if (error.status === 404) {
+      return throwError(new NotFoundError());
+    }
+    return throwError(new AppError(error));
+  }
+
+
 }
