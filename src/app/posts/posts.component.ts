@@ -1,4 +1,4 @@
-import { BadRequest } from './../common/bad-request';
+import { BadInput } from '../common/bad-input';
 import { NotFoundError } from './../common/not-found-error';
 import { AppError } from './../common/app-error';
 import { TemplateDefinitionBuilder } from '@angular/compiler/src/render3/view/template';
@@ -41,8 +41,8 @@ export class PostsComponent  implements OnInit {
           console.log(response.json());
         },
         (error:AppError) => {
-          if(error instanceof BadRequest){
-            //this.form.setErrors(error.json());
+          if(error instanceof BadInput){
+            //this.form.setErrors(error.originalError);
           }else{
             alert('An unexpected error occurred.')
             console.log(error);

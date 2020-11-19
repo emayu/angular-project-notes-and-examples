@@ -1,4 +1,4 @@
-import { BadRequest } from './../common/bad-request';
+import { BadInput } from '../common/bad-input';
 import { NotFoundError } from './../common/not-found-error';
 import { AppError } from './../common/app-error';
 import { Injectable } from '@angular/core';
@@ -22,7 +22,7 @@ export class PostService {
       .pipe(
         catchError((error:Response) => {
           if(error.status == 400){
-            return throwError(new BadRequest())
+            return throwError(new BadInput(error.json()))
           }
           return throwError(new AppError(error));
       }));
