@@ -16,6 +16,7 @@ import { SignupFormComponent } from './signup-form/signup-form.component';
 import { TopicListFormComponent } from './topic-list-form/topic-list-form.component';
 import { PasswordChangeFormComponent } from './password-change-form/password-change-form.component';
 import { PostsComponent } from './posts/posts.component';
+import { PostService } from './services/post.service';
 
 
 @NgModule({
@@ -39,7 +40,7 @@ import { PostsComponent } from './posts/posts.component';
     ReactiveFormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [PostService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
