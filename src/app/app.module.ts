@@ -1,43 +1,33 @@
+import { TitleCasePipeCustom } from './titleCaseCustom.pipe';
+import { SummaryPipe } from './summary.pipe';
+import { CoursesService } from './courses.service';
+import { CoursesComponent } from './courses.component'
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import { AppRoutingModule } from './app-routing.module';
+import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { FavoriteComponent } from './favorite/favorite.component';
-import { PanelComponent } from './panel/panel.component';
-import { LikeComponent } from './like/like.component';
-import { InputFormatDirective } from './input-format.directive';
-import { ZippyComponent } from './zippy/zippy.component';
-import { ConctactFormComponent } from './conctact-form/conctact-form.component';
-import { CourseFormComponent } from './course-form/course-form.component';
-import { SignupFormComponent } from './signup-form/signup-form.component';
-import { TopicListFormComponent } from './topic-list-form/topic-list-form.component';
-import { PasswordChangeFormComponent } from './password-change-form/password-change-form.component';
-import { PostsComponent } from './posts/posts.component';
+import { CourseComponent } from './course/course.component';
+import { AuthorsComponent } from './authors/authors.component';
+import { StarComponent } from './star/star.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    SignupFormComponent,
-    FavoriteComponent,
-    PanelComponent,
-    LikeComponent,
-    InputFormatDirective,
-    ZippyComponent,
-    ConctactFormComponent,
-    CourseFormComponent,
-    TopicListFormComponent,
-    PasswordChangeFormComponent,
-    PostsComponent
+    CoursesComponent,
+    CourseComponent,
+    AuthorsComponent,
+    StarComponent,
+    SummaryPipe,
+    TitleCasePipeCustom
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule
+    FormsModule
   ],
-  providers: [],
+  providers: [
+    CoursesService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
