@@ -27,6 +27,8 @@ import { PostsComponent } from './posts/posts.component';
 import { PostService } from './services/post.service';
 import { AppErrorHandler } from './common/app-error-handler';
 
+import { ENgSwitchComponent } from './directives/ng-switch/e-ng-switch.component';
+import { ViewNgSwitch } from './directives/ng-switch/view-ng-switch.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { AppErrorHandler } from './common/app-error-handler';
     CourseFormComponent,
     TopicListFormComponent,
     PasswordChangeFormComponent,
-    PostsComponent
+    PostsComponent,
+    ENgSwitchComponent,
+    ViewNgSwitch
   ],
   imports: [
     BrowserModule,
