@@ -1,5 +1,6 @@
-<form #f="ngForm" >
-    <div class="form-group">
+<form #f="ngForm" (ngSubmit)="submit(f.value)" >
+    <div class="form-group"
+        [class.has-error]="name.touched && name.invalid">
         <label for="name">Course Name</label>
         <input 
             required
@@ -21,8 +22,9 @@
             </div>
         </div>
     </div>
-    <div class="form-group">
-        <label for="catergory">Category</label>
+    <div class="form-group"
+        [class.has-error]="category.touched && !category.valid">
+        <label for="category">Category</label>
         <select 
             required
             ngModel

@@ -18,7 +18,8 @@ import { PanelComponent } from './panel/panel.component';
 import { LikeComponent } from './like/like.component';
 import { InputFormatDirective } from './input-format.directive';
 import { ZippyComponent } from './zippy/zippy.component';
-import { ConctactFormComponent } from './conctact-form/conctact-form.component';
+import { ContactFormComponent } from './contact-form/contact-form.component';
+import { ViewContactFormComponent } from './contact-form/view-contact-form.component';
 import { CourseFormComponent } from './course-form/course-form.component';
 import { SignupFormComponent } from './signup-form/signup-form.component';
 import { TopicListFormComponent } from './topic-list-form/topic-list-form.component';
@@ -29,6 +30,7 @@ import { AppErrorHandler } from './common/app-error-handler';
 
 import { ENgSwitchComponent } from './directives/ng-switch/e-ng-switch.component';
 import { ViewNgSwitch } from './directives/ng-switch/view-ng-switch.component';
+import { SectionSevenComponent } from './sections/section-seven/section-seven.component';
 
 @NgModule({
   declarations: [
@@ -45,13 +47,15 @@ import { ViewNgSwitch } from './directives/ng-switch/view-ng-switch.component';
     LikeComponent,
     InputFormatDirective,
     ZippyComponent,
-    ConctactFormComponent,
+    ContactFormComponent,
+    ViewContactFormComponent,
     CourseFormComponent,
     TopicListFormComponent,
     PasswordChangeFormComponent,
     PostsComponent,
     ENgSwitchComponent,
-    ViewNgSwitch
+    ViewNgSwitch,
+    SectionSevenComponent
   ],
   imports: [
     BrowserModule,
