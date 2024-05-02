@@ -31,6 +31,8 @@ import { AppErrorHandler } from './common/app-error-handler';
 import { ENgSwitchComponent } from './directives/ng-switch/e-ng-switch.component';
 import { ViewNgSwitch } from './directives/ng-switch/view-ng-switch.component';
 import { SectionSevenComponent } from './sections/section-seven/section-seven.component';
+import { SectionEigthComponent } from './sections/section-eigth/section-eigth.component';
+import { FormArrayExampleComponent } from './form-array-example/form-array-example.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +57,9 @@ import { SectionSevenComponent } from './sections/section-seven/section-seven.co
     PostsComponent,
     ENgSwitchComponent,
     ViewNgSwitch,
-    SectionSevenComponent
+    SectionSevenComponent,
+    SectionEigthComponent,
+    FormArrayExampleComponent
   ],
   imports: [
     BrowserModule,

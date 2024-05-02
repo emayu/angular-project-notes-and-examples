@@ -1,0 +1,144 @@
+<h2>Section 8: Reactive Forms</h2>
+<p>With this approach we can create forms by code, with some benefints:</p>
+<ul>
+    <li>Create controls programmatically</li>
+    <li>Add validation</li>
+    <li>Implement custom validation</li>
+    <li>Implement asynchronous validation(contact the server)</li>
+    <li>Build form that include an array of objects</li>
+</ul>
+<hr>
+<h3>92. Creating Controls Programmatically</h3>
+<p>
+    For use Reactive form first we need to import the module <code>ReactiveFormsModule</code>
+    and add it to our <code>app.module.ts</code> file.
+    We have to define in the controller an element of the type <code>FormGroup</code> example:
+</p>
+<pre><code>
+    <var>form</var> = new FormGroup({{"{"}}
+        <var>username</var> : new FormControl('',[
+          Validators.required,
+          Validators.minLength(3),
+          UsernameValidators.cannotContainSpace
+        ], UsernameValidators.shouldBeUnique ),
+        <var>password</var> : new FormControl('',Validators.required),
+        {{"}"}});
+</code></pre>
+<p>
+    Then bind it in the view with <code>[formGroup]="form"</code> where form is the atttribute in the controller.
+    See all the example in the component class <code>app\singup-form\singup-form.component.ts</code>
+</p>
+
+
+<hr>
+<h3>93. Specific validations Errors</h3>
+<p>
+    The constructor of the <code>FormControl</code> class the first parameter is the initial value.
+    The second parameter are the validators.
+    To access from the view we can use the <code>form</code> member of the class and use the method get for access to the form control,
+    example: <code>form.get('username')</code>
+</p>
+<p>
+    Or define a new method in the controler and access from it. Example
+</p>
+<pre><code ngNonBindable>
+    //controller
+    get <b>username</b>()&#123;
+        return this.form.get('username');
+        &#125;
+    //view
+    &lt;div *ngIf=&quot;<b>username</b>.touched &amp;&amp; <b>username</b>.invalid&quot; class=&quot;alert alert-danger&quot;&gt; 
+            ...
+        &lt;/div&gt; 
+</code></pre>
+
+<hr>
+<h3>94. Spicific validations Errors</h3>
+<p>
+    The second parameter of the <code>FormControl</code> accepts and anny of multiple errors, as you see in the code example in 92.
+</p>
+
+
+<hr>
+<h3>95. Implementing Custom Validation</h3>
+<p>
+    We can create custom validation functions with <code>ValidationFn</code> that is an Interface. The better approach is create
+    all custom validation functions in one class. See example in <code>src\app\signup-form\username.validators.ts</code>
+</p>
+
+<hr>
+<h3>96. Asynchronous Operations</h3>
+<p>
+    We can create validations that are executed asynchronous because we call to the server to make it. The implementation is the as the before example, with
+    the diference that we create a promomise <code>Promise&lt;ValidationErrors&gt; | null</code> that will return the same return object.
+    See the method <code>shouldBeUnique</code> in <code>scrc\app\signup-form\username.validators.ts</code>
+</p>
+
+<hr>
+<h3>97. Asynchronous Validators</h3>
+<p>
+    For the <code>FormControl</code> constructor, the third parameter could be a <code>AsyncValidatorFn</code> or an array of it; this validator is an Interface.
+</p>
+
+<hr>
+<h3>98. Showing a Loader Image</h3>
+<p>
+    For show a cusmon message to show that a asynchronous operation is in execution use the directive <code><var>*ngIf</var>="username.pending"</code>. 
+    See the example in the template <code>src\app\signup-form\signup-form.component.html</code> that show the message <i>Cheching for uniqueness...</i>
+</p>
+
+<hr>
+<h3>99. Validating the form input upon submit</h3>
+<p>
+    We can set error to the form with the method <code>setErrors</code> of the object <code>FormGroup</code>
+</p>
+
+<hr>
+<h3>101. Form Array</h3>
+<p> If you want to use a list of elements or an array use a <code>FormArray</code> htar is a <code>FormControl</code> see the example below.</p>
+<div class="db-example">
+    <form-array-example></form-array-example>
+</div>
+
+<hr>
+<h4>102. Form Builder</h4>
+<p>
+ We can use the class <code>FormBuilder</code> to Creates an AbstractControl from a user-specified configuration. This approach is a little bit cleaner. See the example below.
+</p>
+<pre>
+    <code>
+        //original
+        form = new FormGroup(&#123;
+            name : new FormControl(&#39;&#39;, Validators.required),
+            contact : new FormGroup(&#123;
+                email: new FormControl(),
+                phone: new FormControl()
+            &#125;),
+            topics: new FormArray([])
+          &#125;);
+        
+          //with form builder
+        constructor(fb:FormBuilder)&#123;
+            this.form = fb.group(&#123;
+              name: [&#39;&#39;, Validators.required],
+              contact : fb.group(&#123;
+                email: [&#39;&#39;, Validators.required],
+                phone: []
+              &#125;),
+              topics: fb.array([])
+            &#125;);
+        &#125;
+    </code>
+</pre>
+<hr>
+<hr>
+<h3>Result of the chapter:</h3>
+<div class="db-example">
+    <signup-form></signup-form>
+</div>
+
+<hr>
+<h3>Assignment of the chapter</h3>
+<div class="db-example">
+    <password-change-form></password-change-form>
+</div>

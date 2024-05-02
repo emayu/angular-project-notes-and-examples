@@ -18,6 +18,8 @@ export class SignupFormComponent {
   });
 
   login(){
+    //call services if it throw an error we can return a error as below.
+    console.log(this.form);
     this.form.setErrors({
       invalidLogin : true 
     });
@@ -25,5 +27,9 @@ export class SignupFormComponent {
 
   get username(){
     return this.form.get('username');
+  }
+
+  get password(){
+    return this.form.get('password')
   }
 }
