@@ -1,11 +1,11 @@
 import { Component} from '@angular/core';
 
 @Component({
-  selector: 'conctact-form',
-  templateUrl: './conctact-form.component.html',
-  styleUrls: ['./conctact-form.component.css']
+  selector: 'contact-form',
+  templateUrl: './contact-form.component.html',
+  styleUrls: ['./contact-form.component.css']
 })
-export class ConctactFormComponent{
+export class ContactFormComponent{
   conctactMethods = [
     { id:1, name:'Email'},
     { id:2, name:'Phone'}

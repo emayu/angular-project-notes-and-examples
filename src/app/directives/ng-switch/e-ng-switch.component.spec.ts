@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ConctactFormComponent } from './conctact-form.component';
+import { ENgSwitchComponent } from './e-ng-switch.component';
 
-describe('ConctactFormComponent', () => {
-  let component: ConctactFormComponent;
-  let fixture: ComponentFixture<ConctactFormComponent>;
+describe('ENgSwitchComponent', () => {
+  let component: ENgSwitchComponent;
+  let fixture: ComponentFixture<ENgSwitchComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ConctactFormComponent ]
+      declarations: [ ENgSwitchComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ConctactFormComponent);
+    fixture = TestBed.createComponent(ENgSwitchComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

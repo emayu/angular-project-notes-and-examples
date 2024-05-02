@@ -2,7 +2,7 @@ import { AbstractControl, ValidationErrors } from '@angular/forms';
 
 export class UsernameValidators {
     static cannotContainSpace(control:AbstractControl) : ValidationErrors | null {
-        if((control.value as string).indexOf(' ') >= 0){
+        if(control.value && (control.value as string).indexOf(' ') >= 0){
             return { cannotContainSpace: true}
         }
         return null;
@@ -12,7 +12,12 @@ export class UsernameValidators {
         return new Promise((resolve, reject) => {
             setTimeout(()=>{
                 if(control.value === "mosh"){
-                    resolve({ shouldBeUnique : true});
+                    resolve({ shouldBeUnique : {
+                        user: control.value,
+                        isNotUnique: true
+                    }
+
+                    });
                 }else {
                     resolve(null);
                 }

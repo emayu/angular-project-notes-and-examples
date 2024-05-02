@@ -1,0 +1,17 @@
+<form >
+    <input type="text" 
+        class="form-control"
+        (keydown.enter)="addTopic($event)"
+        #topic
+    >
+
+
+    <ul class="list-group">
+        <li class="list-group-item"
+            (click)="removeTopic(topic)"
+            *ngFor="let topic of topics.controls">
+            {{ topic.value }}
+        </li>
+    </ul>
+    <button class="btn btn-danger" *ngIf="topics.controls.length > 0" (click)="clear()">Clear all</button>
+</form>

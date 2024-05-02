@@ -12,4 +12,8 @@ export class CourseFormComponent {
     {id:3, name:'Languages'}
   ];
 
+submit(formValues){
+  console.log(formValues)
+}
+
 }
