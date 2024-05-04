@@ -1,0 +1,182 @@
+<h2>Section 9: Consuming HTTP services</h2>
+<p></p>
+<ul>
+    <li>Connect UI to back end server</li>
+    <li>Perfom CRUD operations(create, read, update and delete)</li>
+    <li>Extract a reusable data service</li>
+    <li>Property handle different kind of errors</li>
+    <li>Build applications with separation of concerns</li>
+</ul>
+
+<hr>
+<h3>105. JSONPlaceHolder</h3>
+<p>
+    We can use this resource for consuming http service (<a href="https://jsonplaceholder.typicode.com/" >https://jsonplaceholder.typicode.com/</a>)
+    for testing and prototing.
+</p>
+
+<hr>
+<h3>106. Getting data</h3>
+<p>
+    The first step to cosume http service is import the <code>HttpModule</code> in <code>src\app\app.module.ts</code>
+</p>
+<pre class="prettyprint"><code>
+    import &#123; HttpModule &#125; from '@angular/http';
+    ...
+    imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpModule // <- add module
+  ],
+</code></pre>
+<div class="alert alert-warning">
+    The code above <code>HttpMode</code> is marked as deprecated. In new versions of angular use <code>HttpClient</code> <code>HttpClientModule</code> from <code>'@angular/common/http'</code>
+</div>
+<p>
+    After import the HttpModule, we can inject the service in our components. And send a simple <code>GET</code>
+</p>
+
+<pre class="prettyprint"><code >
+    import &#123; Http &#125; from '@angular/http';
+    //...
+    export class PostsComponent  &#123;
+        constructor(http:Http)  &#123; // <- inject http service
+            http.get('https://jsonplaceholder.typicode.com/todos/1') // <- calling get
+            .subscribe( response => &#125;
+            console.log(response);
+            &#125;);
+        &#125;
+    //...
+    &#125;
+</code></pre>
+
+<hr>
+<h3>110. OnInit Interface</h3>
+<p>
+    implements this Interface <code>OnInit</code> and define the method in the component and after call all method needed for the loading of the page.
+    There are more LifeCycle Hooks like:
+</p>
+<ul>
+    <li>OnInit</li>
+    <li>OnChanges</li>
+    <li>DoCheck</li>
+    <li>AfterContentInit</li>
+</ul>
+
+<hr>
+<h3>111. Separation of concerns</h3>
+<div class="alert alert-info" >
+    Our classes should have a single responsibility    
+</div>
+<pre>
+   +-----------+            +---------+           +---------+
+   | Component |  --------> | Service | --------> | Backend |
+   +-----------+            +---------+           +---------+
+</pre>
+
+<hr>
+<h3>112. Extracting a Service</h3>
+<p> 
+    use the command <code>ng generate service [name-of-the-service]</code> and after you have to add the class in in <code>src\app\app.module.ts</code>.
+    example <code>ng generate service PostService</code> see the example below
+</p>
+<pre class="prettyprint"><code>
+    import &#123; PostService &#125; from './services/post.service';
+    ...
+    providers: [
+        PostService
+    ],
+    ...
+</code></pre>
+
+<p>Service code example</p>
+<pre class="prettyprint"><code>
+    import  &#123; Injectable  &#125; from '@angular/core';
+    import  &#123; Http  &#125; from '@angular/http';
+
+    @Injectable( &#123;
+    providedIn: 'root'
+    &#125;)
+    export class PostService  &#123;
+    private url = 'https://jsonplaceholder.typicode.com/posts';
+    constructor(private http: Http)  &#123;  &#125;
+
+    getPosts() &#123;
+        return this.http.get(this.url);
+    &#125;
+
+    createPost(post) &#123;
+        return this.http.post(this.url, JSON.stringify(post));
+    &#125;
+
+    ...
+
+    &#125;
+</code></pre>
+<p>
+    Instead of calling directly from the component we inject the new service in the component see the example in <code>src\app\posts\posts.component.ts</code>
+</p>
+<pre class="prettyprint"><code>
+    ...
+    export class PostsComponent  implements OnInit  &#123;
+        ...
+        constructor(private service:PostService)   &#123; // <- inject service
+        &#125;
+        ...
+     &#125;
+</code></pre>
+
+<hr>
+<h3>113. Handling Errors</h3>
+<p> 
+</p>
+
+<h3>114. Handling unexpected Errors</h3>
+<p> 
+    in subscribe we can define a error function. See the example below
+</p>
+<pre class="prettyprint"><code>
+    .subscribe(
+        response =>  &#123;
+          //process the response     
+         &#125;,
+        error => &#123; // <- here we write the code
+          alert('An unexpected error occurred.')
+          console.log(error);
+         &#125;
+      );
+</code></pre>
+
+<h3>115. Handling expected Errors</h3>
+<p> 
+    In the same portion de code as before. We can read the error object that is passed in the error function
+</p>
+<pre class="prettyprint"><code>
+    .subscribe(
+        response =>  &#123;
+          //process the response     
+         &#125;,
+        error:Reponse => &#123; 
+            if(error.status === 400) // <- here we handle a specific error
+                this.for.setErrors(error.json()); // 
+          alert('An unexpected error occurred.');
+          console.log(error);
+         &#125;
+      );
+</code></pre>
+
+<h3>116. Throwing application-specific</h3>
+<p> 
+    Insted of processing specific http errors in the view component we can define application-specific 
+    error by Throwing or own custom error. First create new error extending the class <code>Error</code>
+    for this examples see file <code>src\app\common\bad-input.ts</code>
+</p>
+<p>
+    For example for the error 404, extend of the before class
+</p>
+<pre class="prettyprint"><code>
+    import &#123; AppError &#125; from './app-error';
+    export class BadRequest extends AppError&#123; &#125;
+</code></pre>

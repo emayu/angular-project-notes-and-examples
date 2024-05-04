@@ -33,6 +33,7 @@ import { ViewNgSwitch } from './directives/ng-switch/view-ng-switch.component';
 import { SectionSevenComponent } from './sections/section-seven/section-seven.component';
 import { SectionEigthComponent } from './sections/section-eigth/section-eigth.component';
 import { FormArrayExampleComponent } from './form-array-example/form-array-example.component';
+import { SectionNineComponent } from './sections/section-nine/section-nine.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { FormArrayExampleComponent } from './form-array-example/form-array-examp
     ViewNgSwitch,
     SectionSevenComponent,
     SectionEigthComponent,
-    FormArrayExampleComponent
+    FormArrayExampleComponent,
+    SectionNineComponent
   ],
   imports: [
     BrowserModule,
