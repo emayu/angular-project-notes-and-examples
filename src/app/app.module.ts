@@ -34,6 +34,8 @@ import { SectionSevenComponent } from './sections/section-seven/section-seven.co
 import { SectionEigthComponent } from './sections/section-eigth/section-eigth.component';
 import { FormArrayExampleComponent } from './form-array-example/form-array-example.component';
 import { SectionNineComponent } from './sections/section-nine/section-nine.component';
+import { MyFollowersComponent } from './my-followers/my-followers.component';
+import { FollowersService } from './services/followers.service';
 
 @NgModule({
   declarations: [
@@ -61,7 +63,8 @@ import { SectionNineComponent } from './sections/section-nine/section-nine.compo
     SectionSevenComponent,
     SectionEigthComponent,
     FormArrayExampleComponent,
-    SectionNineComponent
+    SectionNineComponent,
+    MyFollowersComponent
   ],
   imports: [
     BrowserModule,
@@ -73,6 +76,7 @@ import { SectionNineComponent } from './sections/section-nine/section-nine.compo
   providers: [
     CoursesService,
     PostService,
+    FollowersService,
     { provide:ErrorHandler, useClass:AppErrorHandler }
   ],
   bootstrap: [AppComponent]

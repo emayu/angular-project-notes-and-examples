@@ -1,0 +1,43 @@
+<h2>My Followers</h2>
+<form class="form-horizontal" (ngSubmit)="searchFollowers()">
+    <div class="form-group">
+        <label for="userName" class="col-sm-1 control-label">Username</label>
+        <div class="col-sm-10">
+            <input 
+                id="userName" 
+                [(ngModel)] = "userName"
+                name="first"
+                (keyup.enter) = "searchFollowers()"
+                type="text" 
+                class="form-control" 
+                placeholder="Searching for...">
+        </div>
+        <div class="colsm-1">
+            <button class="btn btn-principal" cl>Search</button>
+        </div>
+    </div>
+</form>
+
+<div *ngIf="!existUser" class="alert alert-danger">
+    The user <b>{{userName}}</b> does not exist
+</div>
+
+<div *ngIf="followers.length == 0 && existUser" class="alert alert-warning">
+    The user {{userName}} has not followers
+</div>
+<ul *ngIf="followers.length > 0  && existUser" class="list-group">
+    <li class="list-group-item"
+        *ngFor="let follower of followers">
+        <div class="media">
+            <div class="media-left">
+                <a href="#">
+                    <img [src]="follower.avatar_url" class="media-object avatar">
+                </a>
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading">{{follower.login}}</h4>
+                <a [phref]="follower.html_url">{{follower.html_url}}</a>
+            </div>
+        </div>
+    </li>
+</ul>

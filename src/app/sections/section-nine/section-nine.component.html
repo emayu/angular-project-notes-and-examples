@@ -71,8 +71,9 @@
     Our classes should have a single responsibility    
 </div>
 <pre>
+    view logic         http or service logic
    +-----------+            +---------+           +---------+
-   | Component |  --------> | Service | --------> | Backend |
+   | Component |  ========> | Service | ========> | Backend |
    +-----------+            +---------+           +---------+
 </pre>
 
@@ -170,13 +171,129 @@
 <h3>116. Throwing application-specific</h3>
 <p> 
     Insted of processing specific http errors in the view component we can define application-specific 
-    error by Throwing or own custom error. First create new error extending the class <code>Error</code>
-    for this examples see file <code>src\app\common\bad-input.ts</code>
+    error by Throwing our own custom error. First create new error class see <code>src\app\common\app-error.ts</code>
+    and a good practice is include the original error in the constructor.
 </p>
+
+<pre class="prettyprint"><code>
+    export class AppError &#123;
+        constructor(public originalError?: any) &#123; // <- save the orignal error
+        &#125;
+    &#125;
+</code></pre>
+
 <p>
-    For example for the error 404, extend of the before class
+    And after extend this class to throw  a new specific error, for example for 404 with a new class <code>NotFoundError</code> (see <code>src\app\common\not-found-error.ts</code>) and translate the 
+    specific http handling error to the service controller
 </p>
+
 <pre class="prettyprint"><code>
     import &#123; AppError &#125; from './app-error';
-    export class BadRequest extends AppError&#123; &#125;
+    export class NotFoundError extends AppError&#123;
+    &#125;
 </code></pre>
+
+<h3>119. Global Error Handling</h3>
+<p> 
+    For handle unexpected error we can create a class for handling all of them. We have implement the class <code>ErrorHandler</code> for this example
+    the implementation is on <code>src\app\common\app-error-handler.ts</code>
+    After this we need to register as dependecy provider in the <code>app.module.ts</code> file, we tell to angular thar replace the original implementation
+    for this new one.
+</p>
+<pre class="prettyprint"><code>
+    ...
+    providers: [
+        CoursesService,
+        PostService,
+        &#123; provide:ErrorHandler, useClass:AppErrorHandler &#125; // <- here we register as a dependecy provider
+    ]
+    ...
+</code></pre>
+
+<h3>120. Extracting a Reusable Error Handling Method</h3>
+<p> 
+    For the services, we can create an private error methos for reausable code for handle all common error. see <code>src\app\services\post.service.ts</code>
+</p>
+
+<pre class="prettyprint"><code>
+    ...
+    private handleError(error:Response)&#123; //<- new private method
+        if(error.status == 400)&#123;
+          return throwError(new BadInput(error.json()))
+        &#125;
+        if (error.status === 404) &#123;
+          return throwError(new NotFoundError());
+        &#125;
+        return throwError(new AppError(error));
+      &#125;
+    ...
+    update(resource)&#123;
+        let url = this.url + '/' + resource.id ;
+        return this.http.patch(url, JSON.stringify(&#123; isRead : true &#125;))
+          .pipe(
+            map( response =>  response.json()),
+            catchError(this.handleError) // <- usage of the method
+          );
+      &#125;
+    ...
+</code></pre> 
+
+<h3>121. Extracting a Reusable Error Handling Method</h3>
+<p> 
+    Many times we have many resources that are accessed in the same way for that 
+    reason we can create a class that contains all the shared code.
+    <br>See <code>src\app\services\data.service.ts</code>
+</p>
+<pre class="prettyprint"><code>
+    ...
+    export class DataService &#123;
+        constructor(private url:string, private http: Http) &#123; // <- here we have to pass this two params
+        &#125;
+    &#125;
+    ...
+</code></pre>
+<p>
+    An after that extends from the before class. Example: see(<code>src\app\services\post.service.ts</code>)
+</p>
+<pre class="prettyprint"><code>
+    import &#123; DataService &#125; from './data.service';
+    import &#123; Injectable &#125; from '@angular/core';
+    import &#123; Http &#125; from '@angular/http';
+
+
+    @Injectable(&#123;
+    providedIn: 'root'
+    &#125;)
+    export class PostService extends DataService &#123;
+    
+    constructor(http: Http) &#123; 
+        super('https://jsonplaceholder.typicode.com/posts', http);//<- is the unique code in the class
+    &#125;
+
+    
+
+    &#125;
+</code></pre>
+
+<hr>
+    <h3>124. Observables vs Promises</h3>
+    <p>
+        <b>The Observables are lazy</b>, do not doing nothing if you don't call or subscribe to it.
+    </p>
+    <p>
+        <b>The Promises are eager</b>, as soon you create or promises the code is executed, the only methods avialables are <code>.then</code> and <code>.catch</code>
+    </p>
+
+    <hr>
+    <h3>Assignment 8: GitHub Followers Page</h3>
+    <my-followers></my-followers>
+
+<hr>
+<hr>
+    <h3>Result of the chapter:</h3>
+    see <code>src\app\posts\posts.component.ts</code>
+      
+            <posts></posts>
+    
+
+

@@ -21,6 +21,14 @@ export class DataService {
       );
   }
 
+  get(id): Observable<any> {
+    return this.http.get(`${this.url}/${id}`)
+      .pipe( 
+        map( response => response.json()),
+        catchError(this.handleError)
+      );
+  }
+
   create(resource){
     //return throwError(new AppError());
     return this.http.post(this.url, JSON.stringify(resource))
@@ -41,7 +49,7 @@ export class DataService {
 
   delete(id) {
     let url =  this.url + '/' + id;
-    return throwError(new AppError());
+    //return throwError(new AppError());
     return this.http.delete(url)
     .pipe(
       map( response =>  response.json()),
