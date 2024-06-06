@@ -3,6 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
+import { RouterModule } from '@angular/router';
 
 
 import { TitleCasePipeCustom } from './titleCaseCustom.pipe';
@@ -36,6 +37,11 @@ import { FormArrayExampleComponent } from './form-array-example/form-array-examp
 import { SectionNineComponent } from './sections/section-nine/section-nine.component';
 import { MyFollowersComponent } from './my-followers/my-followers.component';
 import { FollowersService } from './services/followers.service';
+import { SectionTenComponent } from './sections/section-ten/section-ten.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { HomeComponent } from './home/home.component';
+import { GithubProfileComponent } from './github-profile/github-profile.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -64,14 +70,26 @@ import { FollowersService } from './services/followers.service';
     SectionEigthComponent,
     FormArrayExampleComponent,
     SectionNineComponent,
-    MyFollowersComponent
+    MyFollowersComponent,
+    SectionTenComponent,
+    NavbarComponent,
+    HomeComponent,
+    GithubProfileComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot([
+      { path : '', component: HomeComponent }, //Empty path represents the home page or default route
+      { path : 'followers/:username', component: GithubProfileComponent },//first put specific pattern
+      { path : 'followers', component: MyFollowersComponent },
+      { path : 'posts', component: PostsComponent },
+      { path : '**', component: NotFoundComponent },//at least all not above route this will showed
+    ])
   ],
   providers: [
     CoursesService,

@@ -1,0 +1,49 @@
+<h2>Section 10: Routing and Navigation</h2>
+<ul>
+    <li>Configuration routes</li>
+    <li>Implementing sigle page aplications (SPAs)</li>
+    <li>Working with route and query parameters</li>
+    <li>Programmatic navigation</li>
+</ul>
+<p>
+    For this section instead of have a final result it will have a series of notes containing all the knowleage of the section.
+</p>
+<hr>
+<h3>126. Routing in a Nutshell</h3>
+<p>
+    Here we are going to explore another builtin module, the <b>Router</b> module. This module is for implement navigation in our a application
+</p>
+<h4>Steps</h4>
+<ol>
+    <li>Configure the routes</li>
+    <li>Add a router outlet</li>
+    <li>Add links</li>
+</ol>
+
+<hr>
+<h3>127. Configuring Router</h3>
+<p>
+    Here we are going to explore another builtin module, the <b>Router</b> module. This module is for implement navigation in our a application.
+    Something that I noticed is that in this project there is a file <code>app-routing.module.ts</code> so for this example I will skip that file and 
+    make the next configuration in <code>src\app\app.module.ts</code>
+</p>
+<pre class="prettyprint"><code>    ...
+    import&#123; RouterModule &#125; from '@angular/router';
+    ...
+    imports: [
+        BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpModule,
+        RouterModule.forRoot([ // <- from here the routes are define, this is the step 1
+        &#123; path : '', component: HomeComponent &#125;, //Empty path represents the home page or default route
+        &#123; path : 'followers/:username', component: GithubProfileComponent &#125;,//first put specific pattern
+        &#123; path : 'followers', component: MyFollowersComponent &#125;,
+        &#123; path : 'posts', component: PostsComponent &#125;,
+        &#123; path : '**', component: NotFoundComponent &#125;,//at least all not above route this will showed
+        ])
+    ],
+    ...
+</code></pre>
+
+<app-navbar></app-navbar>
