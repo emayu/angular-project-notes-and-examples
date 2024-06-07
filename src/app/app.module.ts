@@ -85,7 +85,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     HttpModule,
     RouterModule.forRoot([
       { path : '', component: HomeComponent }, //Empty path represents the home page or default route
-      { path : 'followers/:username', component: GithubProfileComponent },//first put specific pattern
+      { path : 'followers/:id', component: GithubProfileComponent },//first put specific pattern
       { path : 'followers', component: MyFollowersComponent },
       { path : 'posts', component: PostsComponent },
       { path : '**', component: NotFoundComponent },//at least all not above route this will showed
