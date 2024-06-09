@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FollowersService, Follower } from '../services/followers.service';
 import { NotFoundError } from '../common/not-found-error';
 import { ActivatedRoute } from '@angular/router';
+import { Observable, combineLatest } from 'rxjs';
+
 
 @Component({
   selector: 'my-followers',
@@ -20,19 +22,15 @@ export class MyFollowersComponent implements OnInit {
 
   ngOnInit(): void {
     this.searchFollowers();
-    this.route.paramMap
-      .subscribe( params => {
-
-      });
-    this.route.queryParamMap
-      .subscribe(
-        params => {
-
-        });
-    /** For static extract query param */
-    // let pageQP = this.route.snapshot.queryParamMap.get('page');
-    // let orderQP = this.route.snapshot.queryParamMap.get('order');
-    // console.log(pageQP, orderQP);
+    combineLatest([
+      this.route.paramMap,
+      this.route.queryParamMap]
+    ).subscribe( combined => {
+      let id = combined[0].get('id');
+      let page = combined[1].get('page');
+      console.log('id', id, 'page', page);
+    });
+    
   }
 
   searchFollowers() {
