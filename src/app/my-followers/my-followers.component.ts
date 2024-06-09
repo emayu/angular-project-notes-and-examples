@@ -3,6 +3,7 @@ import { FollowersService, Follower } from '../services/followers.service';
 import { NotFoundError } from '../common/not-found-error';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, combineLatest } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 
 
 @Component({
@@ -26,10 +27,15 @@ export class MyFollowersComponent implements OnInit {
     combineLatest([
       this.route.paramMap,
       this.route.queryParamMap]
-    ).subscribe( combined => {
+    )
+    .pipe( switchMap( combined => {
       let id = combined[0].get('id');
       let page = combined[1].get('page');
       console.log('id', id, 'page', page);
+      return this.followersService.getListFollowers('test');
+    } ))
+    .subscribe( followers => {
+      console.log('result search', followers);
     });
     
   }
