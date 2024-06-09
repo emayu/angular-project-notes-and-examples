@@ -1,4 +1,4 @@
-<h2>My Followers</h2>
+<h2>Followers for</h2>
 <form class="form-horizontal" (ngSubmit)="searchFollowers()">
     <div class="form-group">
         <label for="userName" class="col-sm-1 control-label">Username</label>
@@ -18,7 +18,7 @@
     </div>
 </form>
 
-<div *ngIf="!existUser" class="alert alert-danger">
+<div *ngIf="!existUser && !isSearching" class="alert alert-danger">
     The user <b>{{userName}}</b> does not exist
 </div>
 

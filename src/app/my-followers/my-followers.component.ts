@@ -15,6 +15,7 @@ export class MyFollowersComponent implements OnInit {
   followers: Follower[] = [];
   userName: string = "mosh-hamedani";
   existUser = false;
+  isSearching = false;
 
   constructor(
     private followersService: FollowersService,
@@ -34,6 +35,7 @@ export class MyFollowersComponent implements OnInit {
   }
 
   searchFollowers() {
+    this.isSearching = true;
     console.log(this.userName);
     if (this.userName) {
       this.followersService
@@ -42,11 +44,13 @@ export class MyFollowersComponent implements OnInit {
           next: list => {
             this.existUser = true;
             this.followers = list;
+            this.isSearching = false;
           },
           error: err => {
             if (err instanceof NotFoundError) {
               this.existUser = false;
               this.followers = [];
+              this.isSearching = false;
             } else {
               throw err;
             }
