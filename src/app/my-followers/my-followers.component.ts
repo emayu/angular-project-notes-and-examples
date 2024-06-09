@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FollowersService, Follower } from '../services/followers.service';
 import { NotFoundError } from '../common/not-found-error';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'my-followers',
@@ -13,10 +14,25 @@ export class MyFollowersComponent implements OnInit {
   userName: string = "mosh-hamedani";
   existUser = false;
 
-  constructor(private followersService: FollowersService) { }
+  constructor(
+    private followersService: FollowersService,
+    private route: ActivatedRoute ) { }
 
   ngOnInit(): void {
     this.searchFollowers();
+    this.route.paramMap
+      .subscribe( params => {
+
+      });
+    this.route.queryParamMap
+      .subscribe(
+        params => {
+
+        });
+    /** For static extract query param */
+    // let pageQP = this.route.snapshot.queryParamMap.get('page');
+    // let orderQP = this.route.snapshot.queryParamMap.get('order');
+    // console.log(pageQP, orderQP);
   }
 
   searchFollowers() {
@@ -33,7 +49,6 @@ export class MyFollowersComponent implements OnInit {
             if (err instanceof NotFoundError) {
               this.existUser = false;
               this.followers = [];
-              alert(`Usuario '${this.userName}' no encontrado`);
             } else {
               throw err;
             }
