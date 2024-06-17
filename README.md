@@ -29,5 +29,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## node version
 Tested 10.13.0 
 
-For Anguar 11.2.x 	Node.js ^10.13.0 || ^12.11.0
+For Angular 11.2.x 	Node.js ^10.13.0 || ^12.11.0
 see https://angular.io/guide/versions
