@@ -15,10 +15,9 @@ export class LoginComponent {
     private authService: AuthService) { }
 
   signIn(credentials) {
-    console.log('authenticating')
     this.authService.login(credentials)
       .subscribe(result => { 
-        console.log("result", result);
+        console.log("result authService", result);
         if (result)
           this.router.navigate(['/']);
         else  

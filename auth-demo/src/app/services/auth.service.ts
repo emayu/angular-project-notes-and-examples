@@ -7,11 +7,9 @@ export class AuthService {
   }
 
   login(credentials) { 
-    console.log('calling end point')
    return this.http.post('/api/authenticate', 
       JSON.stringify(credentials))
       .map(  response =>{
-        console.log('response in service', response);
         let result = response.json();
         if( result && result.token){
           localStorage.setItem('token', result.token);
