@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import { JwtHelper, tokenNotExpired } from 'angular2-jwt';
 
 @Injectable()
 export class AuthService {
@@ -25,7 +26,17 @@ export class AuthService {
   }
 
   isLoggedIn() { 
-    return false;
+    return tokenNotExpired('token');
+    // the function above do the same as the below code
+    // const jwtHelper = new JwtHelper();
+    // let token = localStorage.getItem('token');
+    // if(!token)
+    //   return false;
+
+    // let experationDate = jwtHelper.getTokenExpirationDate(token);
+    // let isExpired = jwtHelper.isTokenExpired(token);
+    
+    // return !isExpired;
   }
 }
 
