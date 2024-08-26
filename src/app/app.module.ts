@@ -94,6 +94,10 @@ import { ArchiveComponent } from './archive/archive.component';
       { path : 'followers/:id/:username', component: GithubProfileComponent },//first put specific pattern
       { path : 'followers', component: MyFollowersComponent },
       { path : 'posts', component: PostsComponent },
+      { path : 'section-7', component: SectionSevenComponent },
+      { path : 'section-8', component: SectionEigthComponent },
+      { path : 'section-9', component: SectionNineComponent },
+      { path : 'section-10', component: SectionTenComponent },
       { path : '**', component: NotFoundComponent },//at least all not above route this will showed
     ])
   ],
