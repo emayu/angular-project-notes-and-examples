@@ -5,11 +5,15 @@ import { HttpModule } from '@angular/http';
 import { NgRedux, NgReduxModule } from 'ng2-redux';
 
 import { AppComponent } from './app.component';
-import { IAppState, rootReducer, INITAL_STATE } from './store';
+import { TodoListComponent } from './todo-list/todo-list.component';
+import { TodoDashboardComponent } from './todo-dashboard/todo-dashboard.component';
+import { IAppState, INITIAL_STATE, rootReducer } from './store';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TodoListComponent,
+    TodoDashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -22,6 +26,6 @@ import { IAppState, rootReducer, INITAL_STATE } from './store';
 })
 export class AppModule {
   constructor(ngRedux: NgRedux<IAppState>){
-    ngRedux.configureStore(rootReducer, INITAL_STATE);
+    ngRedux.configureStore(rootReducer, INITIAL_STATE);
   }
 }
