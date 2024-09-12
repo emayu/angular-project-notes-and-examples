@@ -1,0 +1,12 @@
+
+<h1>Todo List</h1>
+
+<input type="text" #title>
+<button (click)="addTodo(title)">Add</button> <p style="white-space: pre-line;"> {{ (processing|async)? "Processing" : " " }}</p>
+<p *ngIf="isLoading| async">Loading...</p>
+<ul *ngIf="!(isLoading| async)" >
+  <li *ngFor="let t of todos | async">
+    <span (click)="toggleTodo(t)" [class.completed]="t.completed">{{ t.title }}</span> 
+    <button (click)="removeTodo(t)">Remove</button>
+  </li>
+</ul>
