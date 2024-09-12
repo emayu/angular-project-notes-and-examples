@@ -1,10 +1,22 @@
-<mat-checkbox
- #showDetails
- [value] = ""
- [checked]="isChecked"
- (change)="onChange($event)"
->
-  Subscribe to newsletter
-</mat-checkbox>
-
-<div *ngIf="showDetails.checked">Some details....</div>
+<div>
+  <div>
+    <h3>Check box</h3>
+  </div>
+  <div>
+    <mat-checkbox #showDetails [value]="" [checked]="isChecked" (change)="onChange($event)">
+      Subscribe to newsletter
+    </mat-checkbox>
+  
+    <div *ngIf="showDetails.checked">Some details....</div>
+  </div>
+</div>
+<div>
+  <div><h3>Raddio button</h3></div>
+  <div>
+    <label id="example-radio-group-label">Select</label>
+    <mat-radio-group value="0">
+      <mat-radio-button value="1">Male </mat-radio-button>
+      <mat-radio-button value="0">Female</mat-radio-button>
+    </mat-radio-group>
+  </div>
+</div>
