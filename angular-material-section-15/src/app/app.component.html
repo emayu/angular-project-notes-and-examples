@@ -10,6 +10,7 @@
     <div *ngIf="showDetails.checked">Some details....</div>
   </div>
 </div>
+<mat-divider></mat-divider>
 <div>
   <div><h3>Raddio button</h3></div>
   <div>
@@ -20,7 +21,7 @@
     </mat-radio-group>
   </div>
 </div>
-
+<mat-divider ></mat-divider>
 <div>
   <div><h3>Select</h3></div>
   <div>
@@ -31,6 +32,29 @@
           {{color.name}}
         </mat-option>
       </mat-select>
+    </mat-form-field>
+  </div>
+</div>
+
+<mat-divider></mat-divider>
+<div>
+  <div><h3>Input</h3></div>
+  <div class="example-container">
+    <mat-form-field >
+      
+      <input 
+        ngModel 
+        #username="ngModel"
+        name="username" 
+        matInput 
+        type="text"
+        placeholder="Username" required>
+      <span matSuffix>@domain.com</span>
+      <span matPrefix>admin.</span>
+      <mat-hint>Type a unique username</mat-hint>
+      <mat-error *ngIf="username.invalid && username.errors.required">
+        The username field is required
+      </mat-error>
     </mat-form-field>
   </div>
 </div>
