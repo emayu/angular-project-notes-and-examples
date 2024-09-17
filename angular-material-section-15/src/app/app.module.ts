@@ -12,10 +12,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider'; 
+import { MatDatepickerModule } from '@angular/material/datepicker'; 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
+import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -35,9 +37,12 @@ import { FormsModule } from '@angular/forms';
     MatIconModule,
     MatButtonModule,
     MatDividerModule,
-    
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
-  providers: [],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'es-GT'}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

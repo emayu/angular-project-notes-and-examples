@@ -68,3 +68,19 @@
     </mat-form-field>
   </div>
 </div>
+
+<mat-divider></mat-divider>
+<div>
+  <div><h3>Date Pickers</h3></div>
+  <div >
+    <mat-form-field>
+      
+      <input matInput [matDatepicker]="picker" disabled>
+      <mat-hint>DD/MM/YYYY</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker disabled="false"></mat-datepicker>
+    </mat-form-field>    
+  </div>
+</div>
+
+
