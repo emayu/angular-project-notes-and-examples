@@ -106,3 +106,20 @@
   </div>
 </div>
 
+<mat-divider></mat-divider>
+<div>
+  <div><h3>Chips - only one</h3></div>
+  <div>
+    <mat-chip-list 
+    >
+      <mat-chip *ngFor="let cat of categories"
+       (click)="selectCategory(cat)"
+       [selected]="cat.selected"
+      >
+        {{ cat.name }}
+      </mat-chip>
+    </mat-chip-list>
+    <p>For multiple use in <code>&lt;mat-clip-list multiple="true" &gt;...&lt;/mat-clip-list&gt;</code></p>
+    <p>and in <code>&lt;mat-chip (click)="cat.selected = !cat.selected" &gt;...&lt;/mat-chip&gt;</code> toogle the selected property</p>
+  </div>
+</div>
