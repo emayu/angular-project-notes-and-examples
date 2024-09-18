@@ -123,3 +123,18 @@
     <p>and in <code>&lt;mat-chip (click)="cat.selected = !cat.selected" &gt;...&lt;/mat-chip&gt;</code> toogle the selected property</p>
   </div>
 </div>
+
+<mat-divider></mat-divider>
+<div>
+  <div><h3>Progress spinner determinated</h3></div>
+  <div>
+    <mat-spinner mode="determinate" [value]="progress"></mat-spinner>
+  </div>
+  <div><h3>Progress spinner indeterminate</h3></div>
+  <div>
+    <mat-spinner
+     mode="indeterminate"
+     *ngIf="isLoading"
+    ></mat-spinner>
+  </div>
+</div>
