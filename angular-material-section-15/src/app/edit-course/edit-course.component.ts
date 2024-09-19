@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, InjectionToken, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+
+export const DIALOG_DATA = new InjectionToken('DIALOG_DATA')
 
 @Component({
   selector: 'app-edit-course',
@@ -8,7 +10,9 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class EditCourseComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<EditCourseComponent>) { }
+  constructor(@Inject(DIALOG_DATA)data:any) { 
+    console.log("Data", data);
+  }
 
   ngOnInit(): void {
   }

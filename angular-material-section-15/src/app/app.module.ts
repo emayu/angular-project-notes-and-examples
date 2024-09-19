@@ -22,7 +22,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatDialogModule } from '@angular/material/dialog'; 
 
 import { AppRoutingModule } from './app-routing.module';
-import { EditCourseComponent } from './edit-course/edit-course.component';
+import { DIALOG_DATA, EditCourseComponent } from './edit-course/edit-course.component';
 
 @NgModule({
   declarations: [
@@ -53,10 +53,11 @@ import { EditCourseComponent } from './edit-course/edit-course.component';
     MatTooltipModule,
     MatTabsModule,
     MatDialogModule,
-    
+
   ],
   providers: [
-    { provide: MAT_DATE_LOCALE, useValue: 'es-GT'}
+    { provide: MAT_DATE_LOCALE, useValue: 'es-GT'},
+    { provide: DIALOG_DATA, useValue: {} }
   ],
   bootstrap: [AppComponent]
 })
