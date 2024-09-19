@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 import { Observable, timer } from 'rxjs';
-import { EditCourseComponent } from './edit-course/edit-course.component';
+import { EditCourseComponent, EditCourseDialogData } from './edit-course/edit-course.component';
 
 @Component({
   selector: 'app-root',
@@ -57,9 +57,10 @@ export class AppComponent {
   }
 
   openDialog(){
-    this.dialog.open(EditCourseComponent, {
-      data: { courseId: 1}
-    })
+    const config:MatDialogConfig<EditCourseDialogData> = {
+      data:{courseId:1}
+    }
+    this.dialog.open(EditCourseComponent, config)
     .afterClosed()
     .subscribe(
       result => console.log(result)
