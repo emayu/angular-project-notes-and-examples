@@ -5,24 +5,11 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatRadioModule } from '@angular/material/radio';
-import { MatSelectModule } from '@angular/material/select';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { MatDividerModule } from '@angular/material/divider'; 
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'; 
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatTabsModule } from '@angular/material/tabs'; 
-import { MatDialogModule } from '@angular/material/dialog'; 
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { EditCourseComponent } from './edit-course/edit-course.component';
+import { MatComponentsModule } from './mat-components.module';
 
 @NgModule({
   declarations: [
@@ -37,27 +24,8 @@ import { EditCourseComponent } from './edit-course/edit-course.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-    
-    MatCheckboxModule,
-    MatRadioModule,
-    MatSelectModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatButtonModule,
-    MatDividerModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatChipsModule,
-    MatProgressSpinnerModule,
-    MatTooltipModule,
-    MatTabsModule,
-    MatDialogModule,
+    MatComponentsModule
 
-  ],
-  providers: [
-    { provide: MAT_DATE_LOCALE, useValue: 'es-GT'},
-    
   ],
   bootstrap: [AppComponent]
 })
