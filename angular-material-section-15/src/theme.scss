@@ -4,6 +4,7 @@
 // Include non-theme styles for core.
 @include mat-core();
 
+// Define a custom theme
 $primary: mat-palette($mat-blue, 600);
 $accent:  mat-palette($mat-yellow, 700);
 $theme: mat-dark-theme((
@@ -14,3 +15,11 @@ $theme: mat-dark-theme((
 ));
 
 @include angular-material-theme($theme);
+
+// DEfine custom typography
+$app-typography: mat-typography-config(
+    $font-family:'"Open Sans", "Helvetica Neue", sans-serif',
+    $headline:      mat-typography-level(35px, 32px, 700),
+);
+
+@include angular-material-typography($app-typography);
