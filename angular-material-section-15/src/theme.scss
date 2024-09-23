@@ -1,13 +1,16 @@
-@mixin soft-border($border-radius) {
-    border: 1px solid #ccc;
-    border-radius: $border-radius;
-    padding: 10px;
-}
+// Import library functions for theme creation.
+@import '~@angular/material/theming';
 
-.box {
-    @include soft-border(5px);
-}
+// Include non-theme styles for core.
+@include mat-core();
 
-.modern-box {
-    @include soft-border(10px);
-}
+$primary: mat-palette($mat-blue, 600);
+$accent:  mat-palette($mat-yellow, 700);
+$theme: mat-dark-theme((
+  color: (
+    primary: $primary,
+    accent: $accent,
+  )
+));
+
+@include angular-material-theme($theme);
