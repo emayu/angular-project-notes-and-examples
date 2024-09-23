@@ -1,0 +1,13 @@
+@mixin soft-border($border-radius) {
+    border: 1px solid #ccc;
+    border-radius: $border-radius;
+    padding: 10px;
+}
+
+.box {
+    @include soft-border(5px);
+}
+
+.modern-box {
+    @include soft-border(10px);
+}
